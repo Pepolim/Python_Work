@@ -1,6 +1,5 @@
 import pygame
 
-
 pygame.init()
 
 #game window
