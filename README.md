@@ -25,11 +25,7 @@ Uma coleção de mecanicas de jogos simples para uso futuro onde cada nivel vai 
 
 ## Introdução
 
-Este projeto consiste mum jogo simples com varias mecanicas diferentes.
-O jogo possui as seguintes mecânicas:
-#---------------------------#
-# COMPLETAR ASSIM QUE PUDER #
-#---------------------------#
+Este projeto consiste mum jogo simples com varias mecanicas diferentes que vao sendo adicionadas ao longo do tempo.
 
 ## Âmbito do Projeto
 
@@ -46,7 +42,8 @@ O jogo possui as seguintes mecânicas:
 
 - **Público-Alvo**: a mim mesmo
 
-- ## **Limitações**:
+- ## **Limitações**: 
+Os meus conhecimentos de python e pygame 
 
 ## Levantamento de Requisitos
 
