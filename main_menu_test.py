@@ -58,15 +58,15 @@ while run:
             # draw pause screen buttons
             # see if button has been pressed
             if play_button.draw(screen):
-                print("play")   
+                print("play")
+                game_paused = False
+                #pygame_teste.main()
             if resume_button.draw(screen):
                 game_paused = False
             if options_button.draw(screen):
                 menu_state = "options"
             if quit_button.draw(screen):
                 run = False
-                #game_paused = False
-                #pygame_teste.main()
                 
         #check if options menu is open
         elif menu_state == "options":

@@ -1,7 +1,7 @@
 import pygame
 import os
-import main_menu
 pygame.init()
+
 #pygame.font.init()
 #pygame.mixer.init()
 
@@ -161,6 +161,7 @@ def main():
                         red_bullets.append(bullet)
                         BULLET_FIRE_SOUND.play()
                         # print(bullets)
+                    
                         
             if event.type == RED_HIT:
                 red_health -= 1
@@ -192,7 +193,7 @@ def main():
         draw_window(red, yellow, red_bullets, yellow_bullets, red_health, yellow_health)
 
     main()
-    #main_menu.game_paused = True
+    
     #pygame.quit()
 """
 Executes the main function when the script is run directly (not imported as a module).
