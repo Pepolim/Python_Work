@@ -50,7 +50,7 @@ Os meus conhecimentos de python e pygame
 ### Requisitos Funcionais
 
 - **RF01**: A aplicação deve ter um menu principal com opções para para entrar nos jogos, listar os jogos, opcoes do jogo(som, tamanho da tela), sair do programa.
-- **RF02**: A aplicação deve de adcionar uma mecanica de jogo nova a cada nivel:
+- **RF02**: A aplicação deve de adicionar uma mecanica de jogo nova a cada nivel:
             - **Nivel 1**: um cubo que se move para a direita e esquerda
             - **Nivel 2**: um cubo que se move para a direita, esquerda, cima e para baixo
             - **Nivel 3**: etc... #COMPLETAR QUANDO PUDER#
@@ -66,6 +66,7 @@ Os meus conhecimentos de python e pygame
 A arquitetura da aplicação é dividida em ..
 
 - **Front-End**: Interface grafica que permite interagir com o utilizador.
+- **Back-End**: Lógica de interação com os objetos e a lógica de jogo.
 
 ### Tecnologias Utilizadas
 
