@@ -1,7 +1,10 @@
 import pygame
 import os
-pygame.font.init()
-pygame.mixer.init()
+import main_menu
+pygame.init()
+#pygame.font.init()
+#pygame.mixer.init()
+
 
 #game window
 screen_width, screen_height = 900, 500
@@ -122,7 +125,7 @@ def draw_winner(text):
     draw_text = WINNER_FONT.render(text, 1, WHITE)
     WIN.blit(draw_text, (screen_width/2 - draw_text.get_width()/2, screen_height/2 - draw_text.get_height()/2))
     pygame.display.update()
-    pygame.time.delay(5000)
+    pygame.time.delay(2000)
 
 
 # MAIN function
@@ -189,6 +192,7 @@ def main():
         draw_window(red, yellow, red_bullets, yellow_bullets, red_health, yellow_health)
 
     main()
+    #main_menu.game_paused = True
     #pygame.quit()
 """
 Executes the main function when the script is run directly (not imported as a module).
