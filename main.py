@@ -1,5 +1,6 @@
 import pygame
 import sys
+import Levels
 
 SCREEN_WIDTH, SCREEN_HEIGHT = 1280, 720
 FPS = 60
@@ -12,9 +13,11 @@ class Game:
         
         self.gameStateManager = GameStateManager('start')
         self.start = Start(self.screen, self.gameStateManager)
-        self.level = Level(self.screen, self.gameStateManager)
+        self.level1 = Levels.Level1(self.screen, self.gameStateManager)
+        self.level2 = Levels.Level2(self.screen, self.gameStateManager)
+        self.level3 = Levels.Level3(self.screen, self.gameStateManager)
         
-        self.states = {'start':self.start, 'level':self.level}
+        self.states = {'start':self.start, 'level1':self.level1, 'level2':self.level2, 'level3':self.level3 }
     
     def run(self):
         while True:
@@ -34,46 +37,13 @@ class Start:
         self.gameStateManager = gameStateManager
         
     def run(self):
-        self.display.fill('red')
+        self.display.fill('black')
         #testing
         keys = pygame.key.get_pressed()
         
         if keys[pygame.K_r]:
             if self.gameStateManager.can_change_state():
-                self.gameStateManager.set_state('level')
-            
-player = pygame.Rect((485,385,30,30))
-
-class Level:
-    def __init__(self, display, gameStateManager):
-        self.display = display
-        self.gameStateManager = gameStateManager
-        self.player = pygame.Rect((485, 385, 30, 30))  # Starting position
-    
-    def reset_player(self):
-        self.player = pygame.Rect((485, 385, 30, 30))  # Reset to starting position
-    
-    def run(self):
-        self.display.fill('blue')
-        #testing
-        
-        pygame.draw.rect(self.display, (255,0,0), self.player)
-        
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_r]:
-            if self.gameStateManager.can_change_state():
-                self.reset_player()
-                self.gameStateManager.set_state('start')
-        elif keys[pygame.K_a]:
-            self.player.x -= 10
-        elif keys[pygame.K_d]:
-            self.player.x += 10
-        elif keys[pygame.K_w]:
-            self.player.y -= 10
-        elif keys[pygame.K_s]:
-            self.player.y += 10
-        
-        pygame.display.update()
+                self.gameStateManager.set_state('level1')
  
 class GameStateManager:
     def __init__(self, currentState):
