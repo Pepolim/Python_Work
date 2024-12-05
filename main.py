@@ -5,10 +5,6 @@ SCREEN_WIDTH, SCREEN_HEIGHT = 1280, 720
 FPS = 60
 
 class Game:
-    """
-    The `__init__` method initializes the Game class, setting up the game window, clock, and game state manager. 
-    It creates instances of the `Start` and `Level` classes, which represent the different game states, and stores them in the `states` dictionary.
-    """
     def __init__(self):
         pygame.init()
         self.screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -20,11 +16,6 @@ class Game:
         
         self.states = {'start':self.start, 'level':self.level}
     
-    """
-    The `run()` method is the main game loop that handles the overall game logic and rendering. 
-    It continuously processes user input events, updates the current game state, and refreshes the display. 
-    The loop runs indefinitely until the user quits the game.
-    """
     def run(self):
         while True:
             for event in pygame.event.get():
@@ -37,57 +28,70 @@ class Game:
             pygame.display.update()
             self.clock.tick(FPS)
 
-"""
-The `Start` class represents the start state of the game. 
-It is responsible for handling the game logic and rendering the start screen when the game state is set to 'start'. 
-The `run()` method is called each frame to update the start state and handle user input.
-"""
 class Start:
     def __init__(self, display, gameStateManager):
         self.display = display
         self.gameStateManager = gameStateManager
+        
     def run(self):
         self.display.fill('red')
         #testing
         keys = pygame.key.get_pressed()
+        
         if keys[pygame.K_r]:
-            self.gameStateManager.set_state('level')
+            if self.gameStateManager.can_change_state():
+                self.gameStateManager.set_state('level')
             
-"""
-The `Level` class represents a game level within the `GameStateManager`. 
-It is responsible for handling the game logic and rendering the level when the game state is set to 'level'. 
-The `run()` method is called each frame to update the level state and handle user input.
-"""
+player = pygame.Rect((485,385,30,30))
+
 class Level:
     def __init__(self, display, gameStateManager):
         self.display = display
         self.gameStateManager = gameStateManager
+        self.player = pygame.Rect((485, 385, 30, 30))  # Starting position
+    
+    def reset_player(self):
+        self.player = pygame.Rect((485, 385, 30, 30))  # Reset to starting position
+    
     def run(self):
         self.display.fill('blue')
         #testing
         
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_e]:
-            self.gameStateManager.set_state('start')
+        pygame.draw.rect(self.display, (255,0,0), self.player)
         
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_r]:
+            if self.gameStateManager.can_change_state():
+                self.reset_player()
+                self.gameStateManager.set_state('start')
+        elif keys[pygame.K_a]:
+            self.player.x -= 10
+        elif keys[pygame.K_d]:
+            self.player.x += 10
+        elif keys[pygame.K_w]:
+            self.player.y -= 10
+        elif keys[pygame.K_s]:
+            self.player.y += 10
+        
+        pygame.display.update()
  
-"""
-The `GameStateManager` class is responsible for managing the current state of the game. 
-It provides methods to get and set the current state, which can be used to transition between different game states (e.g. start menu, level, game over).
-"""  
 class GameStateManager:
     def __init__(self, currentState):
         self.currentState = currentState
+        # Add a cooldown for state changes
+        self.last_state_change = 0
+        self.state_cooldown = 300
     def get_state(self):
         return self.currentState
     def set_state(self, state):
         self.currentState = state
+    def can_change_state(self):
+        current_time = pygame.time.get_ticks()
+        if current_time - self.last_state_change >= self.state_cooldown:
+            self.last_state_change = current_time
+            return True
+        return False
 
-
-"""
-Checks if the script is being run as the main program, rather than being imported as a module. 
-This is a common pattern in Python scripts to allow them to be executed directly, while still being importable as a module.
-"""
 if __name__ == '__main__':
     game = Game()
     game.run()
