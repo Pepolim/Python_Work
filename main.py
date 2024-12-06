@@ -16,8 +16,13 @@ class Game:
         self.level1 = Levels.Level1(self.screen, self.gameStateManager)
         self.level2 = Levels.Level2(self.screen, self.gameStateManager)
         self.level3 = Levels.Level3(self.screen, self.gameStateManager)
+        self.level4 = Levels.Level4(self.screen, self.gameStateManager)
+        self.level5 = Levels.Level5(self.screen, self.gameStateManager)
+        self.level6 = Levels.Level6(self.screen, self.gameStateManager)
         
-        self.states = {'start':self.start, 'level1':self.level1, 'level2':self.level2, 'level3':self.level3 }
+        self.states = {'start':self.start, 'level1':self.level1, 'level2':self.level2, 
+                       'level3':self.level3, 'level4':self.level4, 'level5':self.level5, 
+                       'level6':self.level6}
     
     def run(self):
         while True:
@@ -43,7 +48,7 @@ class Start:
         
         if keys[pygame.K_r]:
             if self.gameStateManager.can_change_state():
-                self.gameStateManager.set_state('level1')
+                self.gameStateManager.set_state('level6')
  
 class GameStateManager:
     def __init__(self, currentState):
