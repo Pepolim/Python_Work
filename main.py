@@ -50,7 +50,7 @@ class Start:
         
         if keys[pygame.K_r]:
             if self.gameStateManager.can_change_state():
-                self.gameStateManager.set_state('level8')
+                self.gameStateManager.set_state('level1')
  
 class GameStateManager:
     def __init__(self, currentState):
