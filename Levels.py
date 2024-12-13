@@ -17,6 +17,8 @@ GRAY = (128, 128, 128)
 
 player = pygame.Rect((100,385,PLAYER_SIZE,PLAYER_SIZE))
 
+def get_font(size): # Returns Press-Start in the desired size
+    return pygame.font.Font("assets/font.ttf", size)
 
 class Level1:
     def __init__(self, display, gameStateManager):
@@ -28,12 +30,15 @@ class Level1:
         self.cube = pygame.Rect(1100, main.SCREEN_HEIGHT - GROUND_HEIGHT*2, 50, 50)  # Create cube with position and size
         # Add ground rectangle
         self.ground = pygame.Rect(0, main.SCREEN_HEIGHT - GROUND_HEIGHT, main.SCREEN_WIDTH, GROUND_HEIGHT)
+        # can show intrudoctory text
+        self.show_text = True
+        
         
     def reset_player(self):
         self.player = pygame.Rect((100, main.SCREEN_HEIGHT - GROUND_HEIGHT*2, PLAYER_SIZE, PLAYER_SIZE)) # Reset to starting position
-        
     
     def run(self):
+        
         self.display.fill('black')
         # Draw the ground
         pygame.draw.rect(self.display, GRAY, self.ground)  # Gray color
@@ -45,7 +50,7 @@ class Level1:
         check_next_level_collision(self.player, self.cube, self.gameStateManager, self.reset_player, 'level2')
         
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_r]:
+        if keys[pygame.K_ESCAPE]:
             if self.gameStateManager.can_change_state():
                 self.reset_player()
                 self.gameStateManager.set_state('start')
@@ -61,7 +66,16 @@ class Level1:
         """
         # Keep player within screen bounds
         screen_boundry(self.player, self.gameStateManager, self.reset_player, 'level1')
-
+        
+        # Apearing text
+        if self.show_text:
+            level_text = get_font(50).render(self.gameStateManager.get_state(), True, "White")
+            text_rect = level_text.get_rect(center=(main.SCREEN_WIDTH/2, main.SCREEN_HEIGHT/2))
+            self.display.blit(level_text, text_rect)
+            pygame.display.update()
+            pygame.time.delay(1000)
+            self.show_text = False
+        
         pygame.display.update()
         
 
@@ -78,6 +92,9 @@ class Level2:
         
         # Add velocity attributes
         self.velocity_x = 0
+        
+        # can show intrudoctory text
+        self.show_text = True
     
     def reset_player(self):
         self.player = pygame.Rect((100, main.SCREEN_HEIGHT - GROUND_HEIGHT*2, PLAYER_SIZE, PLAYER_SIZE)) # Reset to starting position
@@ -96,7 +113,7 @@ class Level2:
         check_next_level_collision(self.player, self.cube, self.gameStateManager, self.reset_player, 'level3')
         
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_r]:
+        if keys[pygame.K_ESCAPE]:
             if self.gameStateManager.can_change_state():
                 self.reset_player()
                 self.gameStateManager.set_state('start')
@@ -123,7 +140,16 @@ class Level2:
         
         # Keep player within screen bounds
         screen_boundry(self.player, self.gameStateManager, self.reset_player, 'level2', self.velocity_x)
-            
+        
+        # Apearing text
+        if self.show_text:
+            level_text = get_font(50).render(self.gameStateManager.get_state(), True, "White")
+            text_rect = level_text.get_rect(center=(main.SCREEN_WIDTH/2, main.SCREEN_HEIGHT/2))
+            self.display.blit(level_text, text_rect)
+            pygame.display.update()
+            pygame.time.delay(1000)
+            self.show_text = False
+        
         pygame.display.update()
         
 
@@ -153,6 +179,9 @@ class Level3:
         self.jump_power = JUMP_POWER  # Jump strength (negative because y-axis is inverted)
         self.is_jumping = False
         
+        # can show intrudoctory text
+        self.show_text = True
+        
     
     def reset_player(self):
         self.player = pygame.Rect((100, main.SCREEN_HEIGHT - GROUND_HEIGHT*2, PLAYER_SIZE, PLAYER_SIZE)) # Reset to starting position
@@ -177,7 +206,7 @@ class Level3:
 
         
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_r]:
+        if keys[pygame.K_ESCAPE]:
             if self.gameStateManager.can_change_state():
                 self.reset_player()
                 self.gameStateManager.set_state('start')
@@ -260,7 +289,16 @@ class Level3:
         
         # Keep player within screen bounds
         screen_boundry(self.player, self.gameStateManager, self.reset_player, 'level3' ,self.velocity_x)
-            
+        
+        # Apearing text
+        if self.show_text:
+            level_text = get_font(50).render(self.gameStateManager.get_state(), True, "White")
+            text_rect = level_text.get_rect(center=(main.SCREEN_WIDTH/2, main.SCREEN_HEIGHT/2))
+            self.display.blit(level_text, text_rect)
+            pygame.display.update()
+            pygame.time.delay(1000)
+            self.show_text = False
+        
         pygame.display.update()
 
 
@@ -289,7 +327,9 @@ class Level4:
         self.jump_power = JUMP_POWER  # Jump strength (negative because y-axis is inverted)
         self.is_jumping = False
         
-    
+        # can show intrudoctory text
+        self.show_text = True
+        
     def reset_player(self):
         self.player = pygame.Rect((100, main.SCREEN_HEIGHT - GROUND_HEIGHT*2, PLAYER_SIZE, PLAYER_SIZE)) # Reset to starting position
         self.velocity_x = 0  # Reset velocity when resetting player
@@ -311,7 +351,7 @@ class Level4:
 
         
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_r]:
+        if keys[pygame.K_ESCAPE]:
             if self.gameStateManager.can_change_state():
                 self.reset_player()
                 self.gameStateManager.set_state('start')
@@ -386,7 +426,16 @@ class Level4:
         
         # Keep player within screen bounds
         screen_boundry(self.player, self.gameStateManager, self.reset_player, 'level4', self.velocity_x)
-            
+        
+        # Apearing text
+        if self.show_text:
+            level_text = get_font(50).render(self.gameStateManager.get_state(), True, "White")
+            text_rect = level_text.get_rect(center=(main.SCREEN_WIDTH/2, main.SCREEN_HEIGHT/2))
+            self.display.blit(level_text, text_rect)
+            pygame.display.update()
+            pygame.time.delay(1000)
+            self.show_text = False
+           
         pygame.display.update()
 
 class Level5:
@@ -418,6 +467,8 @@ class Level5:
         self.jump_power = JUMP_POWER  # Jump strength (negative because y-axis is inverted)
         self.is_jumping = False
         
+        # can show intrudoctory text
+        self.show_text = True
     
     def reset_player(self):
         self.player = pygame.Rect((100, main.SCREEN_HEIGHT - GROUND_HEIGHT*2, PLAYER_SIZE, PLAYER_SIZE)) # Reset to starting position
@@ -440,7 +491,7 @@ class Level5:
 
         
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_r]:
+        if keys[pygame.K_ESCAPE]:
             if self.gameStateManager.can_change_state():
                 self.reset_player()
                 self.gameStateManager.set_state('start')
@@ -515,6 +566,15 @@ class Level5:
         
         # Keep player within screen bounds
         screen_boundry(self.player, self.gameStateManager, self.reset_player, 'level5', self.velocity_x)
+        
+        # Apearing text
+        if self.show_text:
+            level_text = get_font(50).render(self.gameStateManager.get_state(), True, "White")
+            text_rect = level_text.get_rect(center=(main.SCREEN_WIDTH/2, main.SCREEN_HEIGHT/2))
+            self.display.blit(level_text, text_rect)
+            pygame.display.update()
+            pygame.time.delay(1000)
+            self.show_text = False
             
         pygame.display.update()
         
@@ -547,7 +607,8 @@ class Level6:
         self.jump_power = JUMP_POWER  # Jump strength (negative because y-axis is inverted)
         self.is_jumping = False
         
-        
+        # can show intrudoctory text
+        self.show_text = True
     
     def reset_player(self):
         self.player = pygame.Rect((100, main.SCREEN_HEIGHT - GROUND_HEIGHT*2, PLAYER_SIZE, PLAYER_SIZE)) # Reset to starting position
@@ -572,7 +633,7 @@ class Level6:
         pygame.draw.rect(self.display, (0, 255, 0), self.size_changer)
         
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_r]:
+        if keys[pygame.K_ESCAPE]:
             if self.gameStateManager.can_change_state():
                 self.reset_player()
                 self.gameStateManager.set_state('start')
@@ -600,6 +661,11 @@ class Level6:
                 self.velocity_x = 0
         #change size
         if self.player.bottom == self.size_changer.top and self.player.x < self.size_changer.right and self.player.right > self.size_changer.left:
+            #show text above the size changer
+            level_text = get_font(18).render("Press E", True, "White")
+            text_rect = level_text.get_rect(center=(self.size_changer.centerx, self.size_changer.top - 65))
+            self.display.blit(level_text, text_rect)
+            
             if keys[pygame.K_e] and self.gameStateManager.can_change_state():
                 # Size change logic here
                 new_size = PLAYER_SIZE // 2 if self.player.width == PLAYER_SIZE else PLAYER_SIZE
@@ -666,7 +732,16 @@ class Level6:
         
         # Keep player within screen bounds
         screen_boundry(self.player, self.gameStateManager, self.reset_player, 'level6', self.velocity_x)
-            
+        
+        # Apearing text
+        if self.show_text:
+            level_text = get_font(50).render(self.gameStateManager.get_state(), True, "White")
+            text_rect = level_text.get_rect(center=(main.SCREEN_WIDTH/2, main.SCREEN_HEIGHT/2))
+            self.display.blit(level_text, text_rect)
+            pygame.display.update()
+            pygame.time.delay(1000)
+            self.show_text = False
+           
         pygame.display.update()
         
 class Level7:
@@ -704,7 +779,8 @@ class Level7:
         self.jump_power = JUMP_POWER  # Jump strength (negative because y-axis is inverted)
         self.is_jumping = False
         
-        
+        # can show intrudoctory text
+        self.show_text = True
     
     def reset_player(self):
         self.player = pygame.Rect((100, main.SCREEN_HEIGHT - GROUND_HEIGHT*2, PLAYER_SIZE, PLAYER_SIZE)) # Reset to starting position
@@ -729,7 +805,7 @@ class Level7:
         pygame.draw.rect(self.display, (0, 255, 0), self.size_changer)
         
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_r]:
+        if keys[pygame.K_ESCAPE]:
             if self.gameStateManager.can_change_state():
                 self.reset_player()
                 self.gameStateManager.set_state('start')
@@ -757,6 +833,11 @@ class Level7:
                 self.velocity_x = 0
         #change size
         if self.player.bottom == self.size_changer.top and self.player.x < self.size_changer.right and self.player.right > self.size_changer.left:
+            #show text above the size changer
+            level_text = get_font(18).render("Press E", True, "White")
+            text_rect = level_text.get_rect(center=(self.size_changer.centerx, self.size_changer.top - 65))
+            self.display.blit(level_text, text_rect)
+            
             if keys[pygame.K_e] and self.gameStateManager.can_change_state():
                 # Size change logic here
                 new_size = PLAYER_SIZE // 2 if self.player.width == PLAYER_SIZE else PLAYER_SIZE
@@ -823,6 +904,15 @@ class Level7:
         
         # Keep player within screen bounds
         screen_boundry(self.player, self.gameStateManager, self.reset_player, 'level7', self.velocity_x)
+        
+        # Apearing text
+        if self.show_text:
+            level_text = get_font(50).render(self.gameStateManager.get_state(), True, "White")
+            text_rect = level_text.get_rect(center=(main.SCREEN_WIDTH/2, main.SCREEN_HEIGHT/2))
+            self.display.blit(level_text, text_rect)
+            pygame.display.update()
+            pygame.time.delay(1000)
+            self.show_text = False
             
         pygame.display.update()
         
@@ -841,7 +931,7 @@ class Level8:
         # Blocking object setup
         self.blocks = [
             pygame.Rect(main.SCREEN_WIDTH/2, main.SCREEN_HEIGHT - 260, 80, main.SCREEN_HEIGHT),  # wall
-            pygame.Rect(0, 0, main.SCREEN_WIDTH, 10),  # top
+            pygame.Rect(0, 0, main.SCREEN_WIDTH, 0),  # top
             self.gravity_changer1,
             self.gravity_changer2,
             pygame.Rect(0, -1, main.SCREEN_WIDTH, 1), # Add celling "invisible" rectangle
@@ -857,7 +947,8 @@ class Level8:
         self.jump_power = JUMP_POWER  # Jump strength (negative because y-axis is inverted)
         self.is_jumping = False
         
-        
+        # can show intrudoctory text
+        self.show_text = True
     
     def reset_player(self):
         self.player = pygame.Rect((100, main.SCREEN_HEIGHT - GROUND_HEIGHT*2, PLAYER_SIZE, PLAYER_SIZE)) # Reset to starting position
@@ -885,7 +976,7 @@ class Level8:
         pygame.draw.rect(self.display, (0, 255, 255), self.gravity_changer2)
         
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_r]:
+        if keys[pygame.K_ESCAPE]:
             if self.gameStateManager.can_change_state():
                 self.reset_player()
                 self.gameStateManager.set_state('start')
@@ -914,6 +1005,13 @@ class Level8:
         #change gravity
         if ((self.player.bottom == self.gravity_changer1.top and self.player.x < self.gravity_changer1.right and self.player.right > self.gravity_changer1.left) or 
             (self.player.top == self.gravity_changer2.bottom and self.player.x < self.gravity_changer2.right and self.player.right > self.gravity_changer2.left)):
+            
+            if (self.player.bottom == self.gravity_changer1.top and self.player.x < self.gravity_changer1.right and self.player.right > self.gravity_changer1.left):
+                #show text above the size changer
+                level_text = get_font(18).render("Press E", True, "White")
+                text_rect = level_text.get_rect(center=(self.gravity_changer1.centerx, self.gravity_changer1.top - 65))
+                self.display.blit(level_text, text_rect)
+            
             if keys[pygame.K_e] and self.gameStateManager.can_change_state():
                 self.is_gravity_inverted = not self.is_gravity_inverted
                 self.gravity = -GRAVITY if self.is_gravity_inverted else GRAVITY
@@ -983,5 +1081,198 @@ class Level8:
         
         # Keep player within screen bounds
         screen_boundry(self.player, self.gameStateManager, self.reset_player, 'level8', self.velocity_x)
+        
+        # Apearing text
+        if self.show_text:
+            level_text = get_font(50).render(self.gameStateManager.get_state(), True, "White")
+            text_rect = level_text.get_rect(center=(main.SCREEN_WIDTH/2, main.SCREEN_HEIGHT/2))
+            self.display.blit(level_text, text_rect)
+            pygame.display.update()
+            pygame.time.delay(1000)
+            self.show_text = False
+           
+        pygame.display.update()
+        
+class Level9:
+    def __init__(self, display, gameStateManager):
+        self.display = display
+        self.gameStateManager = gameStateManager
+        # Add player
+        self.player = pygame.Rect((100, main.SCREEN_HEIGHT - GROUND_HEIGHT*2, PLAYER_SIZE, PLAYER_SIZE))  # Starting position
+        
+        # Add exit
+        self.cube = pygame.Rect(1100, main.SCREEN_HEIGHT - GROUND_HEIGHT*2, 50, 50)  # Create cube with position and size
+        # platform to change gravity
+        self.gravity_changer1 = pygame.Rect(400, main.SCREEN_HEIGHT - GROUND_HEIGHT - 20, 100, 20)
+        self.gravity_changer2 = pygame.Rect(800, 0, 100, 20)
+        # Blocking object setup
+        self.blocks = [
+            pygame.Rect(main.SCREEN_WIDTH/2, main.SCREEN_HEIGHT - 260, 80, main.SCREEN_HEIGHT),  # wall
+            pygame.Rect(0, 0, main.SCREEN_WIDTH, 1),  # top
+            self.gravity_changer1,
+            self.gravity_changer2,
+            pygame.Rect(0, -1, main.SCREEN_WIDTH, 1), # Add celling "invisible" rectangle
+            pygame.Rect(0, main.SCREEN_HEIGHT - GROUND_HEIGHT, main.SCREEN_WIDTH, GROUND_HEIGHT) # Add ground rectangle
+        ]
+        
+        # Add velocity attributes
+        self.velocity_x = 0
+        
+        self.velocity_y = 0  # Add vertical velocity
+        self.gravity = GRAVITY   # Gravity constant
+        self.is_gravity_inverted = False
+        self.jump_power = JUMP_POWER  # Jump strength (negative because y-axis is inverted)
+        self.is_jumping = False
+        
+        # can show intrudoctory text
+        self.show_text = True
+        
+        # Add camera offset tracking
+        self.camera_x = 0
+        self.world_shift = 0
+        # Extend the level bounds much wider than screen
+        self.level_width = main.SCREEN_WIDTH * 3
+    
+    def reset_player(self):
+        self.player = pygame.Rect((100, main.SCREEN_HEIGHT - GROUND_HEIGHT*2, PLAYER_SIZE, PLAYER_SIZE)) # Reset to starting position
+        self.velocity_x = 0  # Reset velocity when resetting player
+        self.velocity_y = 0  # Reset vertical velocity
+        self.is_jumping = False
+        self.jump_power = JUMP_POWER
+        self.is_gravity_inverted = False
+        self.gravity = GRAVITY
+        
+    def run(self):
+        self.display.fill('black')
+        
+        # Draw the player
+        pygame.draw.rect(self.display, RED, self.player)
+        # Draw the exit
+        pygame.draw.rect(self.display, (255,255,0), self.cube)
+        
+        check_next_level_collision(self.player, self.cube, self.gameStateManager, self.reset_player, 'start')
+        
+        for block in self.blocks:
+            pygame.draw.rect(self.display, GRAY, block)  # Draw blocks
+
+        pygame.draw.rect(self.display, (0, 255, 255), self.gravity_changer1)
+        pygame.draw.rect(self.display, (0, 255, 255), self.gravity_changer2)
+        
+        keys = pygame.key.get_pressed()
+        if keys[pygame.K_ESCAPE]:
+            if self.gameStateManager.can_change_state():
+                self.reset_player()
+                self.gameStateManager.set_state('start')
+        elif keys[pygame.K_a]:
+            self.velocity_x -= ACCELERATION
+            for block in self.blocks:
+                if player.colliderect(block):
+                    self.player.x += ACCELERATION  # Undo movement
+                    break
+        elif keys[pygame.K_d]:
+            self.velocity_x += ACCELERATION
+            for block in self.blocks:
+                if self.player.colliderect(block):
+                    player.x -= ACCELERATION  # Undo movement
+                    break
+        else:
+            # Deceleration when no keys are pressed
+            if self.velocity_x > 0:
+                self.velocity_x -= ACCELERATION
+            elif self.velocity_x < 0:
+                self.velocity_x += ACCELERATION
             
+            # Stop completely if velocity is very small
+            if abs(self.velocity_x) < ACCELERATION:
+                self.velocity_x = 0
+        #change gravity
+        if ((self.player.bottom == self.gravity_changer1.top and self.player.x < self.gravity_changer1.right and self.player.right > self.gravity_changer1.left) or 
+            (self.player.top == self.gravity_changer2.bottom and self.player.x < self.gravity_changer2.right and self.player.right > self.gravity_changer2.left)):
+            
+            if (self.player.bottom == self.gravity_changer1.top and self.player.x < self.gravity_changer1.right and self.player.right > self.gravity_changer1.left):
+                #show text above the size changer
+                level_text = get_font(18).render("Press E", True, "White")
+                text_rect = level_text.get_rect(center=(self.gravity_changer1.centerx, self.gravity_changer1.top - 65))
+                self.display.blit(level_text, text_rect)
+            
+            if keys[pygame.K_e] and self.gameStateManager.can_change_state():
+                self.is_gravity_inverted = not self.is_gravity_inverted
+                self.gravity = -GRAVITY if self.is_gravity_inverted else GRAVITY
+                self.jump_power = -JUMP_POWER if self.is_gravity_inverted else JUMP_POWER
+                
+                  
+        # Jump when space is pressed and not already jumping
+        if keys[pygame.K_SPACE] and not self.is_jumping:
+            self.velocity_y = self.jump_power
+            self.is_jumping = True
+        
+        
+        # Handle horizontal deceleration
+        if not (keys[pygame.K_a] or keys[pygame.K_d]):
+            if self.velocity_x > 0:
+                self.velocity_x -= ACCELERATION
+            elif self.velocity_x < 0:
+                self.velocity_x += ACCELERATION
+            if abs(self.velocity_x) < ACCELERATION:
+                self.velocity_x = 0
+        
+        # Apply gravity
+        self.velocity_y += self.gravity
+        
+        
+        # Update horizontal position first
+        self.player.x += self.velocity_x
+        
+        # Horizontal collision check
+        for block in self.blocks:
+            if self.player.colliderect(block):
+                if self.velocity_x > 0:  # Moving right
+                    self.player.right = block.left
+                elif self.velocity_x < 0:  # Moving left
+                    self.player.left = block.right
+                self.velocity_x = 0
+        
+        # Update vertical position separately
+        self.player.y += self.velocity_y
+        
+        # Vertical collision check
+        for block in self.blocks:
+            if self.player.colliderect(block):
+                if self.is_gravity_inverted:
+                    if self.velocity_y < 0:  # Moving up when inverted
+                        self.player.top = block.bottom
+                        self.is_jumping = False
+                    elif self.velocity_y > 0:  # Moving down when inverted
+                        self.player.bottom = block.top
+                else:
+                    if self.velocity_y > 0:  # Moving down normally
+                        self.player.bottom = block.top
+                        self.is_jumping = False
+                    elif self.velocity_y < 0:  # Moving up normally
+                        self.player.top = block.bottom
+                self.velocity_y = 0
+        
+        
+        
+       
+        
+        # Clamp velocity to maximum speed
+        if self.player.width == PLAYER_SIZE:
+            self.velocity_x = max(min(self.velocity_x, MAX_SPEED), -MAX_SPEED)
+        else:
+            self.velocity_x = max(min(self.velocity_x, MAX_SPEED // 2), -MAX_SPEED // 2)
+        
+        # Keep player within screen bounds
+        screen_boundry(self.player, self.gameStateManager, self.reset_player, 'level9', self.velocity_x)
+        
+        
+        # Apearing text
+        if self.show_text:
+            level_text = get_font(50).render(self.gameStateManager.get_state(), True, "White")
+            text_rect = level_text.get_rect(center=(main.SCREEN_WIDTH/2, main.SCREEN_HEIGHT/2))
+            self.display.blit(level_text, text_rect)
+            pygame.display.update()
+            pygame.time.delay(1000)
+            self.show_text = False
+           
         pygame.display.update()

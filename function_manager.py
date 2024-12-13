@@ -1,6 +1,10 @@
 import main
 import Levels
 
+
+def get_font(size): # Returns Press-Start in the desired size
+    return pygame.font.Font("assets/font.ttf", size)
+
 def check_next_level_collision(object1, object2, gameStateManager, reset_function, next_state):
     if object1.colliderect(object2):
         if gameStateManager.can_change_state():
@@ -18,4 +22,4 @@ def screen_boundry(player, gameStateManager, reset_function, next_state, velocit
     elif player.bottom > main.SCREEN_HEIGHT + (Levels.PLAYER_SIZE * 10 ):
         reset_function()
         gameStateManager.set_state(next_state)
-
+        
