@@ -27,12 +27,10 @@ class Game:
         self.level6 = Levels.Level6(self.screen, self.gameStateManager)
         self.level7 = Levels.Level7(self.screen, self.gameStateManager)
         self.level8 = Levels.Level8(self.screen, self.gameStateManager)
-        self.level9 = Levels.Level9(self.screen, self.gameStateManager)
         
         self.states = {'start':self.start, 'level1':self.level1, 'level2':self.level2, 
                        'level3':self.level3, 'level4':self.level4, 'level5':self.level5, 
-                       'level6':self.level6, 'level7':self.level7, 'level8':self.level8, 
-                       'level9':self.level9}
+                       'level6':self.level6, 'level7':self.level7, 'level8':self.level8}
     
     def run(self):
         while True:

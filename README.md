@@ -31,15 +31,6 @@ Este projeto consiste mum jogo simples com varias mecanicas diferentes que vao s
 
 - **Objetivo**: Desenvolver uma aplicação simples para guardar mecânicas para uso futuro.
 
-- **Objetivos Específicos**:
-
-    #---------------------------#
-    # COMPLETAR ASSIM QUE PUDER #
-    #---------------------------#
-    EXEMPLO:
-  - Implementar funcionalidades CRUD (Adicionar, Ler, Atualizar, Eliminar)
-  - Utilizar uma base de dados simples para armazenamento (por exemplo, SQLite).
-
 - **Público-Alvo**: a mim mesmo
 
 - ## **Limitações**: 
@@ -51,13 +42,20 @@ Os meus conhecimentos de python e pygame
 
 - **RF01**: A aplicação deve ter um menu principal com opções para para entrar nos jogos, listar os jogos, opcoes do jogo(som, tamanho da tela), sair do programa.
 - **RF02**: A aplicação deve de adicionar uma mecanica de jogo nova a cada nivel:
-            - **Nivel 1**: um cubo que se move para a direita e esquerda
-            - **Nivel 2**: um cubo que se move para a direita, esquerda, cima e para baixo
-            - **Nivel 3**: etc... #COMPLETAR QUANDO PUDER#
+            - **Nivel 1**: um cubo que se move para a direita e esquerda- 
+            - **Nivel 2**: um cubo que se move para a direita e esquerda, mas agora é mais suave á andar e nao para de repente
+            - **Nivel 3**: introduzo uma mecânica nova de saltar e gravidade, também existem obstaculos
+            - **Nivel 4**: o cubo faz o mesmo, mas agora no nível existe um buraco onde se o cubo cair faz reset ao nivel
+            - **Nivel 5**: o mesmo acima, mas agora existem plataformas
+            - **Nivel 6**: introduzo uma mecânica nova onde se o cubo estiver em cima de uma certa plataforma e pressionar a tecla ‘E’ o tamanho do cubo diminui ou aumenta se estiver pequeno
+            - **Nivel 7**: usa a mecânica anterior e plataforma para passar o nivel
+            - **Nivel 8**: introduzo uma mecânica nova onde se o cubo estiver em cima de uma certa plataforma e pressionar a tecla ‘E’ a gravidade inverte
+
 
 ### Requisitos Não Funcionais
 
-- **RNF01**: Python 3.x.
+- **RNF01**: Um menu principal com opções para entrar listar os niveis, opções do jogo (som,
+ tamanho da tela)
 
 ## Desenvolvimento do Projeto
 
